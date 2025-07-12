@@ -70,3 +70,29 @@ def variables(monkeypatch):
 
     monkeypatch.setattr(OpenAFSLibrary.variable._rf, "get_variable_value", gvv)
     return variables
+
+
+@pytest.fixture
+def process(monkeypatch, variables):
+    """
+    Monkey patch the Popen process communicate and return code.
+
+    Tests and preset the return code, stdout, and stderr by calling
+    the fixture as a function before run_program() is called.
+    """
+    mock_process = Mock()
+    mock_process.returncode = 0
+    mock_process.communicate = Mock(return_value=(b"", b""))
+
+    mock_popen = Mock(return_value=mock_process)
+    monkeypatch.setattr(OpenAFSLibrary.command.subprocess, "Popen", mock_popen)
+
+    # Tests can call the fixture to preset the mocked process output.
+    def process(code=None, stdout="", stderr=""):
+        if code is not None:
+            mock_process.returncode = code
+        stdout = bytearray(stdout, "utf-8")
+        stderr = bytearray(stderr, "utf-8")
+        mock_process.communicate = Mock(return_value=(stdout, stderr))
+
+    return process
