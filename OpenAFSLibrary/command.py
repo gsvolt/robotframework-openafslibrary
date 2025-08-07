@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015 Sine Nomine Associates
+# Copyright (c) 2014-2025 Sine Nomine Associates
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -48,16 +48,16 @@ def run_program(args):
         args = [str(a) for a in args]
         cmd_line = " ".join(args)
         shell = False
-    logger.info("running:", cmd_line)
+    logger.debug(f"running: {cmd_line}")
     proc = subprocess.Popen(
         args, shell=shell, bufsize=-1, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     stdout, stderr = proc.communicate()
     output = stdout.decode("utf-8", errors="ignore")
     error = stderr.decode("utf-8", errors="ignore")
-    logger.info("code:", proc.returncode)
-    logger.info("stdout:", output)
-    logger.info("stderr:", error)
+    logger.debug(f"code: {proc.returncode}")
+    logger.debug(f"stdout: {output}")
+    logger.debug(f"stderr: {error}")
     return (proc.returncode, output, error)
 
 

@@ -45,26 +45,26 @@ def test_run_program__returns_stderr__when__program_runs(python):
 
 def test_run_program__logs_command_line__when__program_runs(python, logged):
     rc, out, err = run_program([python, "--version"])
-    assert len(logged.info) > 0
-    assert f"running: {python} --version" in logged.info
+    assert len(logged.debug) > 0
+    assert f"running: {python} --version" in logged.debug
 
 
 def test_run_program__logs_code__when__program_runs(python, logged):
     rc, out, err = run_program([python, "-c", "print('hello world')"])
-    assert len(logged.info) > 0
-    assert "code: 0" in logged.info
+    assert len(logged.debug) > 0
+    assert "code: 0" in logged.debug
 
 
 def test_run_program__logs_stdout__when__program_runs(python, logged):
     rc, out, err = run_program([python, "-c", "print('hello world')"])
-    assert len(logged.info) > 0
-    assert "stdout: hello world\n" in logged.info
+    assert len(logged.debug) > 0
+    assert "stdout: hello world\n" in logged.debug
 
 
 def test_run_program__logs_stderr__when__program_runs(python, logged):
     rc, out, err = run_program([python, "-c", "import sys; sys.stderr.write('oops')"])
-    assert len(logged.info) > 0
-    assert "stderr: oops" in logged.info
+    assert len(logged.debug) > 0
+    assert "stderr: oops" in logged.debug
 
 
 def test_run_program__raises_file_not_found__when__program_is_missing(tmp_path):
