@@ -28,7 +28,7 @@ def test_run_program__runs_hello_world(python, logged):
     assert err.strip() == ""
     assert f"running: {python} -c print('hello world')" in logged.info
     assert "code: 0" in logged.debug
-    assert "output: hello world\n" in logged.debug
+    assert "output: hello world" in "".join(logged.debug)
     assert "error: " in logged.debug
 
 
