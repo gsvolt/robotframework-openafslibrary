@@ -42,6 +42,7 @@ _default_value = {
     "RXDEBUG": "rxdebug",
     "UNLOG": "unlog",
     "VOS": "vos",
+    "PTS": "pts",
 }
 
 

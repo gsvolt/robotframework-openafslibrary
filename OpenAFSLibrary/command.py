@@ -93,3 +93,11 @@ def fs(*args):
     if rc != 0:
         raise CommandFailed("fs", args, err)
     return out
+
+
+def pts(*args):
+    """pts"""
+    rc, out, err = run_program([get_var("PTS")] + list(args))
+    if rc != 0:
+        raise CommandFailed("pts", args, err)
+    return out
