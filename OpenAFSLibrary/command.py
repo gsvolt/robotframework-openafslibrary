@@ -101,3 +101,27 @@ def pts(*args):
     if rc != 0:
         raise CommandFailed("pts", args, err)
     return out
+
+
+def kadmin(*args):
+    """ kadmin command. """
+    rc, out, err = run_program([get_var("KADMIN")] + list(args))
+    if rc != 0:
+        raise CommandFailed("kadmin", args, err)
+    return out
+
+
+def aklog(*args):
+    """ aklog command. """
+    rc, out, err = run_program([get_var("AKLOG")] + list(args))
+    if rc != 0:
+        raise CommandFailed("aklog", args, err)
+    return out
+
+
+def unlog(*args):
+    """ unlog command. """
+    rc, out, err = run_program([get_var("UNLOG")] + list(args))
+    if rc != 0:
+        raise CommandFailed("unlog", args, err)
+    return out

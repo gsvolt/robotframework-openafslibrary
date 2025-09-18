@@ -29,6 +29,8 @@ _rf = BuiltIn()
 _default_value = {
     "AFS_CELL": "example.com",
     "KRB_AFS_KEYTAB": "robot.keytab",
+    "KRB_ADMIN_KEYTAB": "admin.keytab",
+    "KRB_ADMIN_USER": "admin",
     "KRB_REALM": "EXAMPLE.COM",
     "AFS_AKIMPERSONATE": False,
     "PAG_ONEGROUP": True,
@@ -37,6 +39,7 @@ _default_value = {
     "FS": "fs",
     "KDESTROY": "kdestroy",
     "KINIT": "kinit",
+    "KADMIN": "kadmin",
     "KLOG_KRB5": "klog.krb5",
     "PAGSH": "pagsh",
     "RXDEBUG": "rxdebug",
