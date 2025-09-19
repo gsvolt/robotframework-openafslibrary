@@ -20,7 +20,6 @@ class _UserKeywords:
 
         logger.info("BEGIN: User create.")
 
-        kadmin = get_var("KADMIN")
         krb_realm = get_var("KRB_REALM")
         admin_user = get_var("KRB_ADMIN_USER")
         admin_keytab = get_var("KRB_ADMIN_KEYTAB")
