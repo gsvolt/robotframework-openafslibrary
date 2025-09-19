@@ -44,6 +44,7 @@ class OpenAFSLibrary(
     _PagKeywords,
     _CacheKeywords,
     _DumpKeywords,
+    _UserKeywords,
 ):
     """OpenAFS Robot Framework test library
 
