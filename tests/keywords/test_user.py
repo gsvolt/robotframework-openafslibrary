@@ -5,13 +5,13 @@ import pytest
 import os
 import sys
 
-from OpenAFSLibrary.keywords.user import(
-    _UserKeywords
-)
+from OpenAFSLibrary.keywords.user import _UserKeywords
+
 
 @pytest.fixture
 def keywords():
     return _UserKeywords()
+
 
 def test_create_user__creates_user__when__user_name_is_given(keywords, process):
 
@@ -22,14 +22,14 @@ def test_create_user__creates_user__when__user_name_is_given(keywords, process):
     user_id = ""
 
     process(
-        expected_args = [
+        expected_args=[
             "kadmin",
             "-p",
             f"{admin_user}@{krb_realm}",
             "-k",
             "-t",
             f"{admin_keytab}",
-            "listprincs"
+            "listprincs",
         ],
         stdout=[
             "K/M@EXAMPLE.COM",
@@ -40,7 +40,7 @@ def test_create_user__creates_user__when__user_name_is_given(keywords, process):
             "krbtgt/EXAMPLE.COM@EXAMPLE.COM",
             "robot@EXAMPLE.COM",
             "root/admin@EXAMPLE.COM",
-        ]
+        ],
     )
     got = keywords.create_user(user_name)
     assert got == ""

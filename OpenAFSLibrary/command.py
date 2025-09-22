@@ -104,7 +104,7 @@ def pts(*args):
 
 
 def kadmin(*args):
-    """ kadmin command. """
+    """kadmin command."""
     rc, out, err = run_program([get_var("KADMIN")] + list(args))
     if rc != 0:
         raise CommandFailed("kadmin", args, err)
@@ -112,7 +112,7 @@ def kadmin(*args):
 
 
 def aklog(*args):
-    """ aklog command. """
+    """aklog command."""
     rc, out, err = run_program([get_var("AKLOG")] + list(args))
     if rc != 0:
         raise CommandFailed("aklog", args, err)
@@ -120,7 +120,7 @@ def aklog(*args):
 
 
 def unlog(*args):
-    """ unlog command. """
+    """unlog command."""
     rc, out, err = run_program([get_var("UNLOG")] + list(args))
     if rc != 0:
         raise CommandFailed("unlog", args, err)

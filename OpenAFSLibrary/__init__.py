@@ -32,6 +32,8 @@ from OpenAFSLibrary.keywords import _RxKeywords
 from OpenAFSLibrary.keywords import _PagKeywords
 from OpenAFSLibrary.keywords import _CacheKeywords
 from OpenAFSLibrary.keywords import _DumpKeywords
+from OpenAFSLibrary.keywords import _UserKeywords
+from OpenAFSLibrary.keywords import _GroupKeywords
 
 
 class OpenAFSLibrary(
@@ -45,6 +47,7 @@ class OpenAFSLibrary(
     _CacheKeywords,
     _DumpKeywords,
     _UserKeywords,
+    _GroupKeywords,
 ):
     """OpenAFS Robot Framework test library
 

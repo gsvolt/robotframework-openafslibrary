@@ -28,6 +28,8 @@ from OpenAFSLibrary.keywords.rx import _RxKeywords
 from OpenAFSLibrary.keywords.pag import _PagKeywords
 from OpenAFSLibrary.keywords.cache import _CacheKeywords
 from OpenAFSLibrary.keywords.dump import _DumpKeywords
+from OpenAFSLibrary.keywords.user import _UserKeywords
+from OpenAFSLibrary.keywords.group import _GroupKeywords
 
 __all__ = [
     "_CommandKeywords",
@@ -39,4 +41,6 @@ __all__ = [
     "_PagKeywords",
     "_CacheKeywords",
     "_DumpKeywords",
+    "_UserKeywords",
+    "_GroupKeywords",
 ]
