@@ -15,7 +15,7 @@ class _UserKeywords:
     def create_user(
         self,
         user_name,
-        user_id=random.randint(9000, 9100),
+        user_id,  # =random.randint(9000, 9100),
         gen_keytab=False,
         add_to_group=None,
     ):
@@ -28,16 +28,18 @@ class _UserKeywords:
         krb_realm = get_var("KRB_REALM")
         admin_user = get_var("KRB_ADMIN_USER")
         admin_keytab = get_var("KRB_ADMIN_KEYTAB")
-        user_pw = user_name
+        user_pw = f"{user_name}_pw"
+
         # check if principal exists (kadmin -p admin@EXAMPLE.COM -k -t admin.keytab listprincs)
         out = kadmin(
             "-p", f"{admin_user}@{krb_realm}", "-k", "-t", admin_keytab, "listprincs"
         )
-        logger.info(out)
-        print(out)
+        logger.info(f"out={out}")
         if "user_name" in out:
-            print("Cannot add principal as it already exists: %s" % user_name)
-            return
+            raise AssertionError(
+                f"Cannot add principal {user_name} as it already exists"
+            )
+
         # add principal (kadmin -p admin@EXAMPLE.COM -k -t admin.keytab addprinc <user_name>)
         out = kadmin(
             "-p",
@@ -50,8 +52,7 @@ class _UserKeywords:
             user_pw,
             user_name,
         )
-        logger.info(out)
-        print(out)
+        logger.info(f"out={out}")
         # create user in openafs (pts createuser -name <user_name> -id <user_id>)
         pts("createuser", "-name", user_name, "-id", user_id)
         # need to get admin token prior to listprinc

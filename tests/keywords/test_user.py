@@ -15,11 +15,12 @@ def keywords():
 
 def test_create_user__creates_user__when__user_name_is_given(keywords, process):
 
+    user_name = "test_user"
+    user_pw = "test_user_pw"
+    user_id = "9101"
     krb_realm = "EXAMPLE.COM"
     admin_user = "admin"
     admin_keytab = "admin.keytab"
-    user_name = "test_user"
-    user_id = ""
 
     process(
         expected_args=[
@@ -42,5 +43,26 @@ def test_create_user__creates_user__when__user_name_is_given(keywords, process):
             "root/admin@EXAMPLE.COM",
         ],
     )
-    got = keywords.create_user(user_name)
-    assert got == ""
+
+    process(
+        expected_args=[
+            "kadmin",
+            "-p",
+            f"{admin_user}@{krb_realm}",
+            "-k",
+            "-t",
+            admin_keytab,
+            "addprinc",
+            "-pw",
+            user_pw,
+            user_name,
+        ],
+        stdout=[],
+    )
+
+    process(
+        expected_args=["pts", "createuser", "-name", user_name, "-id", user_id],
+        stdout=[],
+    )
+
+    keywords.create_user(user_name, user_id)
