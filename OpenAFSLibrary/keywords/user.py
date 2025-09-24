@@ -1,9 +1,6 @@
 # Copyright (c) 2025, Sine Nomine Associates
 # See LICENSE
 
-import os
-import random
-
 from OpenAFSLibrary import logger
 from OpenAFSLibrary.variable import get_var
 from OpenAFSLibrary.command import pts, kadmin
@@ -14,11 +11,12 @@ class _UserKeywords:
 
     def create_user(
         self,
-        user_name,
-        user_id,  # =random.randint(9000, 9100),
-        gen_keytab=False,
-        add_to_group=None,
-    ):
+        user_name: str,
+        user_id: int,  # =random.randint(9000, 9100),
+        gen_keytab: bool = False,
+        add_to_group: bool = False,
+        group_name: str = "",
+    ) -> int:
         """Create an OpenAFS user.
         - create a user principle and AFS pts user account
         - optionally generate a keytab
@@ -35,7 +33,7 @@ class _UserKeywords:
             "-p", f"{admin_user}@{krb_realm}", "-k", "-t", admin_keytab, "listprincs"
         )
         logger.info(f"out={out}")
-        if "user_name" in out:
+        if user_name in out:
             raise AssertionError(
                 f"Cannot add principal {user_name} as it already exists"
             )
