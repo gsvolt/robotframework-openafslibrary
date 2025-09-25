@@ -21,7 +21,6 @@ admin_keytab = "admin.keytab"
 def test_create_user__creates_user__when__user_name_is_given(keywords, process):
 
     user_name = "test_user"
-    user_pw = "test_user_pw"
     user_id = "9101"
 
     process(
@@ -55,8 +54,7 @@ def test_create_user__creates_user__when__user_name_is_given(keywords, process):
             "-t",
             admin_keytab,
             "addprinc",
-            "-pw",
-            user_pw,
+            "-randkey",
             user_name,
         ],
         stdout=[],

@@ -26,7 +26,6 @@ class _UserKeywords:
         krb_realm = get_var("KRB_REALM")
         admin_user = get_var("KRB_ADMIN_USER")
         admin_keytab = get_var("KRB_ADMIN_KEYTAB")
-        user_pw = f"{user_name}_pw"
 
         # check if principal exists (kadmin -p admin@EXAMPLE.COM -k -t admin.keytab listprincs)
         out = kadmin(
@@ -46,8 +45,7 @@ class _UserKeywords:
             "-t",
             admin_keytab,
             "addprinc",
-            "-pw",
-            user_pw,
+            "-randkey",
             user_name,
         )
         logger.info(f"out={out}")
