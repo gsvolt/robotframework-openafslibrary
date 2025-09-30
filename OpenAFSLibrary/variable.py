@@ -28,8 +28,8 @@ _rf = BuiltIn()
 
 _default_value = {
     "AFS_CELL": "example.com",
-    "KRB_AFS_KEYTAB": "robot.keytab",
-    "KRB_ADMIN_KEYTAB": "admin.keytab",
+    "KRB_AFS_KEYTAB": "/home/robot/robot.keytab",
+    "KRB_ADMIN_KEYTAB": "/home/robot/admin.keytab",
     "KRB_ADMIN_USER": "admin",
     "KRB_REALM": "EXAMPLE.COM",
     "AFS_AKIMPERSONATE": False,
